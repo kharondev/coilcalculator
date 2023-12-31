@@ -9,9 +9,13 @@ body {
 }
 
 .container {
+  height: 100%;
   background: #f8fae5;
   border: 20px solid #b19470;
   border-radius: 20px;
+  min-height: 40rem;
+  max-height: 80rem;
+  overflow-y: scroll;
 }
 
 main div.row {
