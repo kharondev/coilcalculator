@@ -1,0 +1,29 @@
+body {
+  width: 100dvw;
+  height: 100dvh;
+  background: #43766c;
+  font-family: "Comfortaa", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: #f8fae5;
+  border: 20px solid #b19470;
+  border-radius: 20px;
+}
+
+main div.row {
+  padding: 40px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.panel-heading,
+.panel-title {
+  background: #b19470 !important;
+  color: #fff;
+}

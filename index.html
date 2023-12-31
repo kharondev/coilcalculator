@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+  <head>
+    <title>E-Sigara Yardım Coil Hesaplayıcı</title>
+    <link
+      id="bscss"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="main.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+
+    <script defer src="main.js"></script>
+  </head>
+  <body
+    id="coil"
+    data-slot="3775697641"
+    class="defaulttheme hidemulti"
+    style="position: relative; min-height: 100%; top: 0px"
+    cz-shortcut-listen="true"
+  >
+    <div class="container">
+      <main>
+        <h2>E-Sigara Sohbet Ve Yardımlaşma</h2>
+        <div class="row">
+          <div class="col col-md-6 col-always col-lg-4">
+            <div id="cc-menuwrap">
+              <div
+                class="btn-group pull-right"
+                id="cc-menu"
+                style="margin-top: 1em"
+              >
+                <span
+                  class="btn btn-default"
+                  id="cd-basicadvanced"
+                  title="Gives you more information, and a few extra input fields to play with."
+                  >Advanced</span
+                >
+                <span
+                  title="Resets everything to the default values."
+                  id="cc-resetdefaults"
+                  class="btn btn-default"
+                  >Reset</span
+                >
+              </div>
+            </div>
+            <div id="cd-units">
+              <div class="radio">
+                <label for="cd-units-si">
+                  <input
+                    type="radio"
+                    id="cd-units-si"
+                    name="cd-units"
+                    class="cd-units"
+                    value="si"
+                  />
+                  metric units
+                </label>
+              </div>
+              <div class="radio">
+                <label for="cd-units-im">
+                  <input
+                    type="radio"
+                    id="cd-units-im"
+                    name="cd-units"
+                    class="cd-units"
+                    value="im"
+                  />
+                  imperial units
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <a
+                class="pull-right btn btn-link btn-xs"
+                href="customdata#mat"
+                title="Manage your custom presets"
+                >Custom materials</a
+              >
+              <label
+                title="Choose the alloy that you're using for a resistance wire, and whether it's round wire, ribbon wire, or multi stranded."
+              >
+                Material and profile
+              </label>
+              <div class="input-group">
+                <select id="cd-material" class="form-control">
+                  <option value="ka1">Kanthal A1 / APM</option>
+                  <option value="ka">Kanthal A / AE / AF</option>
+                  <option value="kd">Kanthal D</option>
+                  <option value="n20">Nichrome N20</option>
+                  <option value="n40">Nichrome N40</option>
+                  <option value="n60">Nichrome N60 (C)</option>
+                  <option value="n70">Nichrome N70 (B)</option>
+                  <option value="n80">Nichrome N80 (A)</option>
+                  <option value="n90">Nichrome N90</option>
+                  <option value="ss304">SS 304</option>
+                  <option value="ss316">SS 316</option>
+                  <option value="ss316l">SS 316L / Elite</option>
+                  <option value="ss317l">SS 317L / Haywire</option>
+                  <option value="ss321">SS 321</option>
+                  <option value="ss430">SS 430</option>
+                  <option value="ss904l">SS 904L</option>
+                  <option value="au">Gold</option>
+                  <option value="ag">Silver</option>
+                  <option value="cu">Copper</option>
+                  <option value="ti1">Titanium 1</option>
+                  <option value="ti2">Titanium 2 (R50400)</option>
+                  <option value="tie">Titanium ready (e-SG)</option>
+                  <option value="w">Tungsten</option>
+                  <option value="nio">Niobium alloy</option>
+                  <option value="ni200lin">Nickel Ni200 (linear TCR)</option>
+                  <option value="ni200">Nickel Ni200 (TFR curve)</option>
+                  <option value="nife30">NiFe30 (Resistherm - TFR)</option>
+                  <option value="dicodes">NiFe30 (Resistherm - TCR)</option>
+                  <option value="reactor">NiFe (Reactor Wire)</option>
+                  <option value="nife30stealth">NiFe30 (StealthVape)</option>
+                  <option value="invar36">
+                    Invar 36 / Nilo 36 / Pernifer 36
+                  </option>
+                  <option value="nidh">Nickel DH</option>
+                  <option value="nft70">Nifethal 70 (Alloy120)</option>
+                  <option value="nft52">Nifethal 52 (Alloy52)</option>
+                  <option value="zr">Zirconium (pure)</option>
+                  <option value="c">Custom resistivity</option>
+                </select>
+                <span class="input-group-addon">:</span>
+                <select id="cd-profile" class="form-control">
+                  <option value="0">Round</option>
+                  <option value="1">Round, twisted/parallel</option>
+                  <option value="2">Ribbon</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group cd-twistpitch" style="display: none">
+              <label
+                >Twist pitch (<sup>lead</sup>/<sub
+                  class="cd-twistpitch-output"
+                ></sub
+                >)</label
+              >
+              <div class="input-group">
+                <input
+                  type="number"
+                  min="0"
+                  max="50"
+                  step="0.001"
+                  class="form-control text-right"
+                  id="cd-twistpitch"
+                  placeholder="Pitch"
+                />
+                <span class="input-group-addon"
+                  ><span title="Millimeter" class="cd-si">mm</span
+                  ><span title="Inches" class="cd-im" style="display: none"
+                    >in</span
+                  ></span
+                >
+              </div>
+              <span class="help-block">
+                The distance between each "ridge" on the twisted wire. Use 0 for
+                non-twisted wire (parallel strands).
+                <small
+                  >For improved accuracy: Count 10 ridges, measure their total
+                  width, and divide by 10.</small
+                >
+              </span>
+            </div>
+            <div class="form-group cd-strands" style="display: none">
+              <label>Number of strands</label>
+              <div class="">
+                <input
+                  type="number"
+                  min="2"
+                  step="1"
+                  class="form-control text-right"
+                  id="cd-strands"
+                  placeholder="# of strands"
+                />
+              </div>
+              <span class="help-block">Max 4 for twisted wire.</span>
+            </div>
+            <div class="form-group cd-wirediameter">
+              <label>Diameter of wire</label>
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><abbr title="American Wire Gauge">AWG</abbr></span
+                >
+                <input
+                  type="number"
+                  min="-10"
+                  max="100"
+                  step="1"
+                  value="30"
+                  class="form-control text-right"
+                  id="cd-awg"
+                  placeholder="AWG"
+                />
+                <span class="input-group-addon"
+                  ><span title="Diameter of resistance wire"
+                    ><!--&#8960;-->Ø<sub>r</sub></span
+                  ></span
+                >
+                <input
+                  type="number"
+                  min="0.001"
+                  max="5"
+                  step="0.001"
+                  value="0.255"
+                  class="form-control text-right"
+                  id="cd-dia"
+                  placeholder="Diameter"
+                />
+                <span class="input-group-addon"
+                  ><span title="Millimeter" class="cd-si">mm</span
+                  ><span title="Inches" class="cd-im" style="display: none"
+                    >in</span
+                  ></span
+                >
+              </div>
+            </div>
+            <div class="form-group cd-wiredimensions" style="display: none">
+              <label>Dimensions of wire</label>
+              <div class="input-group">
+                <input
+                  type="number"
+                  min="0.001"
+                  max="1000"
+                  step="0.01"
+                  class="form-control text-right"
+                  id="cd-ribbonwidth"
+                  placeholder="Width"
+                />
+                <span class="input-group-addon"
+                  ><span title="Millimeter" class="cd-si">mm</span
+                  ><span title="Inches" class="cd-im" style="display: none"
+                    >in</span
+                  >
+                  × <abbr title="Thickness"></abbr
+                ></span>
+                <input
+                  type="number"
+                  min="0.0001"
+                  max="100"
+                  step="0.001"
+                  class="form-control text-right"
+                  id="cd-thickness"
+                  placeholder="Thickness"
+                />
+                <span class="input-group-addon"
+                  ><span title="Millimeter" class="cd-si">mm</span
+                  ><span title="Inches" class="cd-im" style="display: none"
+                    >in</span
+                  ></span
+                >
+              </div>
+              <span class="help-block" id="thicknesswarning"
+                >The width should normally be larger than thickness.
+                <span class="btn btn-default btn-xs">Swap them</span></span
+              >
+            </div>
+            <div class="form-group" id="cd-setup-cg">
+              <label title="How many coils do you want to vape on?"
+                >Setup</label
+              >
+              <select id="cd-setup" class="form-control">
+                <option data-setup-wires="1" data-rfactor="1" value="0">
+                  Single coil
+                </option>
+                <option data-setup-wires="2" data-rfactor="0.5" value="1">
+                  Dual coil
+                </option>
+                <option
+                  data-setup-wires="3"
+                  data-rfactor="0.333333333333333333"
+                  value="2"
+                >
+                  Triple coil
+                </option>
+                <option data-setup-wires="4" data-rfactor="0.25" value="3">
+                  Quad coil
+                </option>
+                <option data-setup-wires="4" data-rfactor="0.2" value="4">
+                  Penta coil
+                </option>
+                <option
+                  data-setup-wires="4"
+                  data-rfactor="0.16666666666666666"
+                  value="5"
+                >
+                  Hex coil
+                </option>
+                <option
+                  data-setup-wires="4"
+                  data-rfactor="0.142857142857142857"
+                  value="6"
+                >
+                  Hepta coil
+                </option>
+                <option data-setup-wires="4" data-rfactor="0.125" value="7">
+                  Octa coil
+                </option>
+                <option data-setup-wires="2" data-rfactor="2" value="8">
+                  Dual coil (serial)
+                </option>
+                <option data-setup-wires="3" data-rfactor="3" value="9">
+                  Triple coil (serial)
+                </option>
+                <option data-setup-wires="4" data-rfactor="4" value="10">
+                  Quad coil (serial)
+                </option>
+                <option data-setup-wires="4" data-rfactor="1" value="11">
+                  Quad coil (serial-parallel)
+                </option>
+              </select>
+              <span class="help-block">
+                <span class="cd-setup-multi"
+                  >In a multi coil setup, all coils must be identical.</span
+                >
+              </span>
+              <span class="help-block cd-setup-multi">
+                <span class="cd-setup-dp" style="display: none"
+                  >Two coils in parallel. Total resistance is halved.
+                  (<sup>1</sup>⁄<sub>2</sub> R)</span
+                >
+                <span class="cd-setup-ds" style="display: none"
+                  >Two coils in serial. Total resistance is doubled. (2 R)</span
+                >
+                <span class="cd-setup-tp" style="display: none"
+                  >All three coils in parallel. Total resistance is divided by
+                  three. (<sup>1</sup>⁄<sub>3</sub> R)</span
+                >
+                <span class="cd-setup-ts" style="display: none"
+                  >All three coils in serial. Total resistance is tripled. (3
+                  R)</span
+                >
+                <span class="cd-setup-qp" style="display: none"
+                  >All four coils in parallel. Total resistance is quartered.
+                  (<sup>1</sup>⁄<sub>4</sub> R)</span
+                >
+                <span class="cd-setup-qs" style="display: none"
+                  >All four coils in serial. Total resistance is quadrupled. (4
+                  R)</span
+                >
+                <span class="cd-setup-qsp" style="display: none"
+                  >Two coils in serial, connected in parallel to a second pair
+                  of serially connected coils.
+                  <small
+                    >Or the other way around: Two coils in parallel, connected
+                    in serial to a second pair of parallelly connected
+                    coils.</small
+                  >
+                  Total resistance is the same as for a single coil. (1 R)</span
+                >
+              </span>
+            </div>
+            <div class="form-group" id="cd-targetr-cg">
+              <label title="The resistance that you are aiming for."
+                >Target resistance</label
+              >
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><span class="cd-adv" style="display: none"
+                    ><span title="Resistance of atomizer"
+                      >R<i><sub>a</sub></i></span
+                    ></span
+                  ></span
+                >
+                <input
+                  type="number"
+                  max="10"
+                  step="0.1"
+                  value="1.8"
+                  class="form-control text-right"
+                  id="cd-targetr"
+                />
+                <span class="input-group-addon"
+                  ><span title="Ohm">Ω</span></span
+                >
+              </div>
+              <span class="help-block cd-bas"
+                >Set the desired
+                <span class="cd-setup-multi" style="font-weight: bolder"
+                  >total</span
+                >
+                coil resistance for your build.</span
+              >
+            </div>
+          </div>
+          <div class="col col-md-6 col-always col-lg-4">
+            <div
+              class="form-group cd-advanced"
+              id="cd-rstv-cg"
+              style="display: none"
+            >
+              <label>Wire resistance</label>
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><span title="Resistance divided by length"
+                    ><span style="text-decoration: underline">R</span><br /><i
+                      >l</i
+                    ></span
+                  ></span
+                >
+                <input
+                  type="number"
+                  class="form-control text-right"
+                  id="cd-rstv"
+                  value=""
+                  step="0.0001"
+                  min="0.0001"
+                />
+                <span class="input-group-addon">
+                  <span title="Ohm per millimeter" class="cd-si"
+                    >Ω<br /><span style="text-decoration: overline"
+                      >mm</span
+                    ></span
+                  >
+                  <span title="Ohm per inch" class="cd-im" style="display: none"
+                    >Ω<br /><span style="text-decoration: overline"
+                      >in</span
+                    ></span
+                  >
+                </span>
+              </div>
+              <span class="help-block"
+                >Changing
+                <span
+                  class="blinky"
+                  data-blink="#cd-material"
+                  style="cursor: help"
+                  >material</span
+                >,
+                <span class="blinky" data-blink="#cd-awg" style="cursor: help"
+                  >AWG</span
+                >
+                or
+                <span class="blinky" data-blink="#cd-dia" style="cursor: help"
+                  >wire diameter</span
+                >
+                updates this value.</span
+              >
+            </div>
+            <div
+              class="form-group cd-advanced"
+              id="cd-len-cg"
+              style="display: none"
+            >
+              <label
+                >Resistance wire length<span
+                  id="cd-len-number"
+                  class="blinky"
+                  data-blink="#cd-setup-cg"
+                  style="cursor: help; display: none"
+                ></span
+              ></label>
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><span title="Length of resistance wire"
+                    ><i>l<sub>r</sub></i></span
+                  ></span
+                >
+                <input
+                  type="number"
+                  class="form-control text-right"
+                  id="cd-len"
+                  min="0.01"
+                  max="500"
+                  step="0.01"
+                />
+                <span class="input-group-addon"
+                  ><span title="Millimeter" class="cd-si">mm</span
+                  ><span title="Inch" class="cd-im" style="display: none"
+                    >in</span
+                  ></span
+                >
+              </div>
+              <span class="help-block">
+                Changing
+                <span
+                  class="blinky"
+                  data-blink="#cd-material"
+                  style="cursor: help"
+                  >material</span
+                >,
+                <span
+                  class="blinky"
+                  data-blink="#cd-setup-cg"
+                  style="cursor: help"
+                  >setup</span
+                >,
+                <span
+                  class="blinky"
+                  data-blink="#cd-targetr-cg"
+                  style="cursor: help"
+                  >target</span
+                >
+                or
+                <span
+                  class="blinky"
+                  data-blink="#cd-rstv-cg"
+                  style="cursor: help"
+                  >wire resistance</span
+                >
+                updates this value.
+              </span>
+            </div>
+
+            <div class="form-group fractioninputdiv" id="cc-coilid-group">
+              <label
+                title="The width of your drill bit, screwdriver, build tool, or whatever you're wrapping your coil around. It is important to get this value exactly right if you want accurate results."
+                >Inner diameter of coil</label
+              >
+              <div class="input-group" id="cd-innerdia-cg">
+                <span class="input-group-addon"
+                  ><span class="cd-adv" style="display: none"
+                    ><span title="Inner diameter">⌀<sub>c</sub></span></span
+                  ></span
+                >
+                <input
+                  type="number"
+                  min="0.01"
+                  max="10"
+                  step="0.01"
+                  value="1.30"
+                  class="form-control text-right"
+                  id="cd-innerdia"
+                />
+                <span class="input-group-addon"
+                  ><span title="Millimeter" class="cd-si">mm</span
+                  ><span title="Inches" class="cd-im" style="display: none"
+                    >in</span
+                  ></span
+                >
+              </div>
+
+              <div class="fractionmenu" id="cc-coilid-group-fractionmenu">
+                <span
+                  class="btn btn-default btn-xs pull-right"
+                  id="cc-coilid-group-fractionbtn"
+                >
+                  <sup>x</sup>/<sub>y</sub>"
+                </span>
+                <div
+                  class="fractionpresets"
+                  style="display: none"
+                  id="cc-coilid-groupscd-fractionpresets"
+                >
+                  <div class="btn-group-justified">
+                    <span class="btn btn-default btn-xs" data-cd-im="0.25"
+                      >1/4"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.125"
+                      >1/8"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.375"
+                      >3/8"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.0625"
+                      >1/16"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.1875"
+                      >3/16"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.3125"
+                      >5/16"</span
+                    >
+                  </div>
+                  <div class="btn-group-justified">
+                    <span class="btn btn-default btn-xs" data-cd-im="0.03125"
+                      >1/32""</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.09375"
+                      >3/32"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.15625"
+                      >5/32"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.21875"
+                      >7/32"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.28125"
+                      >9/32"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.34375"
+                      >11/32"</span
+                    >
+                  </div>
+                  <div class="btn-group-justified">
+                    <span class="btn btn-default btn-xs" data-cd-im="0.015625"
+                      ><sup>1</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.046875"
+                      ><sup>3</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.078125"
+                      ><sup>5</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.109375"
+                      ><sup>7</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.140625"
+                      ><sup>9</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.171875"
+                      ><sup>11</sup>/<sub>64</sub>"</span
+                    >
+                  </div>
+                  <div class="btn-group-justified">
+                    <span class="btn btn-default btn-xs" data-cd-im="0.203125"
+                      ><sup>13</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.234375"
+                      ><sup>15</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.265625"
+                      ><sup>17</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.296875"
+                      ><sup>19</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.328125"
+                      ><sup>21</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.359375"
+                      ><sup>23</sup>/<sub>64</sub>"</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group fractioninputdiv" id="cd-leglength-cg">
+              <label
+                >Leg length (total<span class="cd-setup-multi"> per coil</span
+                >)</label
+              >
+              <div class="input-group" id="cd-leglength-ig">
+                <span class="input-group-addon"
+                  ><span class="cd-adv" style="display: none"
+                    ><span title="Length of coil legs"
+                      ><i>l<sub>l</sub></i></span
+                    ></span
+                  ></span
+                >
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value="0"
+                  class="form-control text-right"
+                  id="cd-leglength"
+                />
+                <span class="input-group-addon"
+                  ><span title="Millimeter" class="cd-si">mm</span
+                  ><span title="Inches" class="cd-im" style="display: none"
+                    >in</span
+                  ></span
+                >
+              </div>
+
+              <div class="fractionmenu" id="cd-leglength-cg-fractionmenu">
+                <span
+                  class="btn btn-default btn-xs pull-right"
+                  id="cd-leglength-cg-fractionbtn"
+                >
+                  <sup>x</sup>/<sub>y</sub>"
+                </span>
+                <div
+                  class="fractionpresets"
+                  style="display: none"
+                  id="cd-leglength-cgscd-fractionpresets"
+                >
+                  <div class="btn-group-justified">
+                    <span class="btn btn-default btn-xs" data-cd-im="0.25"
+                      >1/4"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.125"
+                      >1/8"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.375"
+                      >3/8"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.0625"
+                      >1/16"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.1875"
+                      >3/16"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.3125"
+                      >5/16"</span
+                    >
+                  </div>
+                  <div class="btn-group-justified">
+                    <span class="btn btn-default btn-xs" data-cd-im="0.03125"
+                      >1/32""</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.09375"
+                      >3/32"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.15625"
+                      >5/32"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.21875"
+                      >7/32"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.28125"
+                      >9/32"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.34375"
+                      >11/32"</span
+                    >
+                  </div>
+                  <div class="btn-group-justified">
+                    <span class="btn btn-default btn-xs" data-cd-im="0.015625"
+                      ><sup>1</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.046875"
+                      ><sup>3</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.078125"
+                      ><sup>5</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.109375"
+                      ><sup>7</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.140625"
+                      ><sup>9</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.171875"
+                      ><sup>11</sup>/<sub>64</sub>"</span
+                    >
+                  </div>
+                  <div class="btn-group-justified">
+                    <span class="btn btn-default btn-xs" data-cd-im="0.203125"
+                      ><sup>13</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.234375"
+                      ><sup>15</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.265625"
+                      ><sup>17</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.296875"
+                      ><sup>19</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.328125"
+                      ><sup>21</sup>/<sub>64</sub>"</span
+                    >
+                    <span class="btn btn-default btn-xs" data-cd-im="0.359375"
+                      ><sup>23</sup>/<sub>64</sub>"</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <span class="help-block"
+                >Total length of wires between coil and posts.</span
+              >
+            </div>
+            <div
+              class="form-group cd-advanced"
+              id="cd-wrapspace-cg"
+              style="display: none"
+            >
+              <label>Wrap spacing</label>
+              <div class="input-group">
+                <input
+                  type="number"
+                  step="0.001"
+                  value="0"
+                  class="form-control text-right"
+                  id="cd-wrapspace"
+                />
+                <span class="input-group-addon"
+                  ><span title="Millimeter" class="cd-si">mm</span
+                  ><span title="Inches" class="cd-im" style="display: none"
+                    >in</span
+                  ></span
+                >
+              </div>
+              <span class="help-block">Space between each coil loop.</span>
+            </div>
+            <span class="help-block cd-bas"
+              ><i class="glyphicon glyphicon-warning-sign"></i> Always measure
+              your coil before you fire it!</span
+            >
+          </div>
+          <div class="col col-md-6 col-always col-lg-4">
+            <div class="tabbable" id="rescontab">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="active">
+                  <span class="tab tab-results">Results</span>
+                </li>
+                <li>
+                  <span class="tab converter">Converter</span>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <div class="tab-pane active resultspanel">
+                  <div id="results">
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">
+                          Results
+                          <small>
+                            – how to wrap, and how it will perform
+                          </small>
+                        </h3>
+                      </div>
+                      <table
+                        class="table table-condensed table-striped cd-result"
+                      >
+                        <tbody>
+                          <tr
+                            id="summary-wirelength"
+                            title="How long the wire should ideally be in order to reach your target resistance. You probably want to cut it a little longer in practice, so that you can mount it in your atomizer and trim the ends afterwards."
+                          >
+                            <td>
+                              <span>Resistance wire length</span>
+                            </td>
+                            <td class="summary-res">63.2</td>
+                            <td class="summary-unmlen">mm</td>
+                          </tr>
+                          <tr
+                            style="font-weight: bolder"
+                            id="summary-numberOfWraps"
+                          >
+                            <td>
+                              <span class="visible-xs">Wrap count</span>
+                              <span class="hidden-xs">Number of wraps</span>
+                            </td>
+                            <td class="summary-res">10.23</td>
+                            <td>
+                              <meter
+                                class="pull-right"
+                                min="0"
+                                optimum="8"
+                                low="4"
+                                high="14"
+                                max="20"
+                                value="10.23"
+                              ></meter>
+                            </td>
+                          </tr>
+                          <tr
+                            title="Coil legs pointing in opposite directions"
+                            id="summary-roundedNumberOfWraps"
+                          >
+                            <td>
+                              — <span class="hidden-xs">rounded to </span>"full
+                              wraps"
+                            </td>
+                            <td class="summary-res">10</td>
+                            <td class="text-muted text-right">
+                              <small title="Actual resistance"
+                                >(<span class="summary-ohm">1.76</span>
+                                Ω)</small
+                              >
+                            </td>
+                          </tr>
+                          <tr
+                            title="Coil legs pointing in same direction"
+                            id="summary-halfRoundedNumberOfWraps"
+                          >
+                            <td>
+                              — <span class="hidden-xs">rounded to </span>"half
+                              wraps"
+                            </td>
+                            <td class="summary-res">11/10</td>
+                            <td class="text-muted text-right">
+                              <small title="Actual resistance"
+                                >(<span class="summary-ohm">1.84</span>
+                                Ω)</small
+                              >
+                            </td>
+                          </tr>
+                          <tr
+                            id="summary-coilresistance"
+                            class="cd-setup-multi"
+                          >
+                            <td
+                              title="The resistance of each single coil in your build, provided that all the coils are equal"
+                            >
+                              <span class="visible-xs">Coil Ω</span>
+                              <span class="hidden-xs">Resistance per coil</span>
+                            </td>
+                            <td class="summary-res"></td>
+                            <td>Ω</td>
+                          </tr>
+                          <tr
+                            id="summary-heatcapacity"
+                            title="The heat capacity of the wire affects coil lag. A lower number means a faster coil."
+                          >
+                            <td>
+                              Heat capacity
+                              <span
+                                class="cd-setup-multi blinky"
+                                data-blink="#cd-setup-cg"
+                              >
+                                (each coil)</span
+                              >
+                            </td>
+                            <td class="summary-res">10.51</td>
+                            <td style="white-space: nowrap">
+                              <meter
+                                class="pull-right"
+                                min="0"
+                                optimum="1"
+                                low="20"
+                                high="40"
+                                max="100"
+                                value="10.51"
+                              ></meter>
+                              mJ/K
+                            </td>
+                          </tr>
+
+                          <tr id="summary-legloss" class="" title="">
+                            <td
+                              title="The percentage of power that will be wasted on heating the coil legs"
+                            >
+                              <span class="visible-xs">Leg loss</span>
+                              <span class="hidden-xs">Leg power loss</span>
+                            </td>
+                            <td class="summary-res"><span>7.9</span></td>
+                            <td>
+                              <meter
+                                class="pull-right"
+                                min="0"
+                                optimum="1"
+                                low="20"
+                                high="40"
+                                max="100"
+                                value="7.9"
+                              ></meter>
+                              %
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="panel panel-default hfpanel">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Heat flux</h3>
+                    </div>
+                    <div class="panel-body inputbody">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <span
+                              id="heaticon"
+                              title="The color of this icon can give you a rough idea about the warmth of the vape. It ranges from blue (cold) via green (medium) to yellow (warm) and red (hot). The vape is also affected by wicking, airflow and other factors beside the coil itself. If you are recoiling a clearomizer, aim for the cooler end of the spectrum. Choose warmer colors for RDAs, mesh wicks, and lung hit setups."
+                              style="color: rgb(164, 206, 0)"
+                            >
+                              <i class="glyphicon glyphicon-fire"></i>
+                            </span>
+                          </span>
+                          <input
+                            class="form-control text-right"
+                            type="number"
+                            value="200"
+                            id="hf"
+                            min="10"
+                            max="500"
+                            step="10"
+                          />
+                          <span class="input-group-addon">
+                            <sup>mW</sup>/<sub>mm²</sub>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-body outputbody text-center">
+                      <div class="pull-right">
+                        <span id="hfu">4.3</span> <span>V</span>
+                      </div>
+                      <div class="pull-left">
+                        <span id="hfp">10</span> <span>W</span>
+                      </div>
+                      <span class="text-muted">← mod setting →</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane alert alert-info converterpanel">
+                  <div id="converter"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col col-md-6 col-lg-3 cd-advanced" style="display: none">
+            <div id="advancedresults">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    Coil
+                    <small>
+                      dimensions
+                      <span
+                        class="cd-setup-multi blinky"
+                        data-blink="#cd-setup-cg"
+                      >
+                        (each coil)</span
+                      >
+                    </small>
+                  </h3>
+                </div>
+                <table
+                  class="table table-condensed table-striped cd-result small"
+                >
+                  <tbody>
+                    <tr id="summary-coillength">
+                      <td>
+                        Wire length
+                        <span class="hidden-xs"
+                          >(<i class="blinky" data-blink="#cd-len-cg"
+                            >l<sub>r</sub></i
+                          >
+                          -
+                          <i class="blinky" data-blink="#cd-leglength-cg"
+                            >l<sub>l</sub></i
+                          >)</span
+                        >
+                      </td>
+                      <td class="summary-res">58.2</td>
+                      <td class="summary-unmlen">mm</td>
+                    </tr>
+                    <tr id="summary-outerdia">
+                      <td>
+                        <span class="visible-xs">Outer ⌀</span>
+                        <span class="hidden-xs">Outer diameter</span>
+                        <span class="hidden-xs">
+                          (<span class="blinky" data-blink="#cd-innerdia-cg"
+                            >⌀<i><sub>c</sub></i></span
+                          >+<span class="blinky" data-blink="#cd-si-cg"
+                            >2⌀<i><sub>r</sub></i></span
+                          >)
+                        </span>
+                      </td>
+                      <td class="summary-res">1.81</td>
+                      <td class="summary-unmlen">mm</td>
+                    </tr>
+                    <tr id="summary-neutralaxisdia">
+                      <td
+                        title="The diameter at which the wire neither stretches nor compresses."
+                      >
+                        <span class="visible-xs">Neutral axis ⌀</span>
+                        <span class="hidden-xs">Neutral axis diameter</span>
+                      </td>
+                      <td class="summary-res">1.55</td>
+                      <td class="summary-unmlen">mm</td>
+                    </tr>
+                    <tr id="summary-loopcircum">
+                      <td>
+                        <span class="visible-xs">Circumference</span>
+                        <span class="hidden-xs"
+                          ><abbr title="Neutral axis">Loop</abbr>
+                          circumference</span
+                        >
+                      </td>
+                      <td class="summary-res">5.68</td>
+                      <td class="summary-unmlen">mm</td>
+                    </tr>
+                    <tr id="summary-helixangle">
+                      <td>
+                        <span class="visible-xs">Helix angle</span>
+                        <span class="hidden-xs">Helix angle</span>
+                      </td>
+                      <td class="summary-res">2.7</td>
+
+                      <td>°</td>
+                    </tr>
+                    <tr id="summary-looplength">
+                      <td>
+                        <span class="visible-xs">Loop length</span>
+                        <span class="hidden-xs">Length of each loop</span>
+                      </td>
+                      <td class="summary-res">5.69</td>
+                      <td class="summary-unmlen">mm</td>
+                    </tr>
+                    <tr id="summary-coilwidth">
+                      <td
+                        title="The total width of a coil, from the first wrap to the last."
+                      >
+                        Width
+                      </td>
+                      <td class="summary-res">2.7</td>
+                      <td class="summary-unmlen">mm</td>
+                    </tr>
+                    <tr id="summary-coilarea">
+                      <td title="Surface area of coil (legs not included).">
+                        Surface area
+                      </td>
+                      <td class="summary-res">46.57</td>
+                      <td class="summary-unm">mm²</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    Wire
+                    <small>
+                      dimensions
+                      <span
+                        class="cd-setup-multi blinky"
+                        data-blink="#cd-setup-cg"
+                      >
+                        (each coil)</span
+                      >
+                    </small>
+                  </h3>
+                </div>
+                <table
+                  class="table table-condensed table-striped cd-result small"
+                >
+                  <tbody>
+                    <tr id="summary-wirevolume">
+                      <td title="Total volume of resistance wire">Volume</td>
+                      <td class="summary-res">3.219</td>
+                      <td class="summary-unm">mm³</td>
+                    </tr>
+                    <tr id="summary-density">
+                      <td title="Density of resistance wire">Density</td>
+                      <td class="summary-res">7.100</td>
+                      <td class="summary-unm"><sup>g</sup>/<sub>cm³</sub></td>
+                    </tr>
+                    <tr id="summary-wiremass">
+                      <td title="Total mass of resistance wire">Mass</td>
+                      <td class="summary-res">22.858</td>
+                      <td class="summary-unm">
+                        mg
+                        <span class="cd-si">mg</span>
+                        <span class="cd-im" title="grain">gr</span>
+                      </td>
+                    </tr>
+                    <tr id="summary-surfacearea">
+                      <td
+                        title="Surface area of resistance wire (legs included)."
+                      >
+                        Surface area
+                      </td>
+                      <td class="summary-res">50.57</td>
+                      <td class="summary-unm">mm²</td>
+                    </tr>
+                    <tr id="summary-xarea">
+                      <td title="Cross section area of resistance wire">
+                        Cross section area
+                      </td>
+                      <td class="summary-res">0.051</td>
+                      <td class="summary-unm">mm²</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script id="results-template" type="text/x-handlebars-template">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Results
+            <small>
+              &ndash; how to wrap, and how it will perform
+            </small>
+          </h3>
+        </div>
+        <table class="table table-condensed table-striped cd-result">
+          <tr
+            id="summary-wirelength"
+            title="How long the wire should ideally be in order to reach your target resistance. You probably want to cut it a little longer in practice, so that you can mount it in your atomizer and trim the ends afterwards."
+          >
+            <td>
+              <span>Resistance wire length</span>
+            </td>
+            <td class="summary-res">{{wirelength}}</td>
+            <td class="summary-unmlen">{{unmlen}}</td>
+          </tr>
+          <tr style="font-weight:bolder;" id="summary-numberOfWraps">
+            <td>
+              <span class="visible-xs">Wrap count</span>
+              <span class="hidden-xs">Number of wraps</span>
+            </td>
+            <td class="summary-res">{{numberOfWraps}}</td>
+            <td>
+              <meter
+                class="pull-right"
+                min="0"
+                optimum="8"
+                low="4"
+                high="14"
+                max="20"
+                value="{{numberOfWraps}}"
+              ></meter>
+            </td>
+          </tr>
+          <tr
+            title="Coil legs pointing in opposite directions"
+            id="summary-roundedNumberOfWraps"
+          >
+            <td>
+              &mdash;
+              <span class="hidden-xs">rounded to </span>"full wraps"</td>
+            <td class="summary-res">{{roundedNumberOfWraps}}</td>
+            <td class="text-muted text-right"><small
+                title="Actual resistance"
+              >(<span
+                  class="summary-ohm"
+                >{{roundedNumberOfWrapsActualRes}}</span>
+                &ohm;)</small></td>
+          </tr>
+          <tr
+            title="Coil legs pointing in same direction"
+            id="summary-halfRoundedNumberOfWraps"
+          >
+            <td>
+              &mdash;
+              <span class="hidden-xs">rounded to </span>"half wraps"</td>
+            <td class="summary-res">{{halfRoundedNumberOfWraps}}</td>
+            <td class="text-muted text-right"><small
+                title="Actual resistance"
+              >(<span
+                  class="summary-ohm"
+                >{{halfRoundedNumberOfWrapsActualRes}}</span>
+                &ohm;)</small></td>
+          </tr>
+          <tr id="summary-coilresistance" class="cd-setup-multi">
+            <td
+              title="The resistance of each single coil in your build, provided that all the coils are equal"
+            >
+              <span class="visible-xs">Coil &ohm;</span>
+              <span class="hidden-xs">Resistance per coil</span>
+            </td>
+            <td class="summary-res">{{coilresistance}}</td>
+            <td>&ohm;</td>
+          </tr>
+          <tr
+            id="summary-heatcapacity"
+            title="The heat capacity of the wire affects coil lag. A lower number means a faster coil."
+          >
+            <td>
+              Heat capacity
+              <span class="cd-setup-multi blinky" data-blink="#cd-setup-cg">
+                (each coil)</span>
+            </td>
+            <td class="summary-res">{{heatcapacity}}</td>
+            <td style="white-space:nowrap;">
+              <meter
+                class="pull-right"
+                min="0"
+                optimum="1"
+                low="20"
+                high="40"
+                max="100"
+                value="{{heatcapacity}}"
+              ></meter>
+              mJ/K
+            </td>
+          </tr>
+
+          <tr
+            id="summary-legloss"
+            class="{{leglossclass}}"
+            title="{{leglosstitle}}"
+          >
+            <td
+              title="The percentage of power that will be wasted on heating the coil legs"
+            >
+              <span class="visible-xs">Leg loss</span>
+              <span class="hidden-xs">Leg power loss</span>
+            </td>
+            <td class="summary-res"> <span>{{legloss}}</span></td>
+            <td>
+              <meter
+                class="pull-right"
+                min="0"
+                optimum="1"
+                low="20"
+                high="40"
+                max="100"
+                value="{{legloss}}"
+              ></meter>
+              %
+            </td>
+          </tr>
+        </table>
+      </div>
+    </script>
+
+    <script id="advancedresults-template" type="text/x-handlebars-template">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Coil
+            <small>
+              dimensions
+              <span class="cd-setup-multi blinky" data-blink="#cd-setup-cg">
+                (each coil)</span>
+            </small>
+          </h3>
+        </div>
+        <table class="table table-condensed table-striped cd-result small">
+          <tr id="summary-coillength">
+            <td>Wire length
+              <span class="hidden-xs">(<i
+                  class="blinky"
+                  data-blink="#cd-len-cg"
+                >l<sub>r</sub></i>
+                -
+                <i class="blinky" data-blink="#cd-leglength-cg">l<sub
+                  >l</sub></i>)</span></td>
+            <td class="summary-res">
+              {{#if wirelengthWarning}}
+                <span
+                  class="label label-danger"
+                  title="Legs are too long. No wire left for coil. Please change your parameters and try again."
+                >{{wirelength}}</span>
+              {{else}}
+                {{wirelength}}
+              {{/if}}
+            </td>
+            <td class="summary-unmlen">{{unmlen}}</td>
+          </tr>
+          <tr id="summary-outerdia">
+            <td>
+              <span class="visible-xs">Outer &#8960;</span>
+              <span class="hidden-xs">Outer diameter</span>
+              <span class="hidden-xs">
+                (<span class="blinky" data-blink="#cd-innerdia-cg">&#8960;<i
+                  ><sub>c</sub></i></span>+<span
+                  class="blinky"
+                  data-blink="#cd-si-cg"
+                >2&#8960;<i><sub>r</sub></i></span>)
+              </span>
+            </td>
+            <td class="summary-res">{{outerdia}}</td>
+            <td class="summary-unmlen">{{unmlen}}</td>
+          </tr>
+          <tr id="summary-neutralaxisdia">
+            <td
+              title="The diameter at which the wire neither stretches nor compresses."
+            >
+              <span class="visible-xs">Neutral axis &#8960;</span>
+              <span class="hidden-xs">Neutral axis diameter</span>
+            </td>
+            <td class="summary-res">{{neutralaxisdia}}</td>
+            <td class="summary-unmlen">{{unmlen}}</td>
+          </tr>
+          <tr id="summary-loopcircum">
+            <td>
+              <span class="visible-xs">Circumference</span>
+              <span class="hidden-xs"><abbr title="Neutral axis">Loop</abbr>
+                circumference</span>
+            </td>
+            <td class="summary-res">{{loopcircum}}</td>
+            <td class="summary-unmlen">{{unmlen}}</td>
+          </tr>
+          <tr id="summary-helixangle">
+            <td>
+              <span class="visible-xs">Helix angle</span>
+              <span class="hidden-xs">Helix angle</span>
+            </td>
+            <td class="summary-res">{{helixangle}}</td>
+
+            <td>&deg;</td>
+          </tr>
+          <tr id="summary-looplength">
+            <td>
+              <span class="visible-xs">Loop length</span>
+              <span class="hidden-xs">Length of each loop</span>
+            </td>
+            <td class="summary-res">{{looplength}}</td>
+            <td class="summary-unmlen">{{unmlen}}</td>
+          </tr>
+          <tr id="summary-coilwidth">
+            <td
+              title="The total width of a coil, from the first wrap to the last."
+            >
+              Width
+            </td>
+            <td class="summary-res">{{coilwidth}}</td>
+            <td class="summary-unmlen">{{unmlen}}</td>
+          </tr>
+          <tr id="summary-coilarea">
+            <td title="Surface area of coil (legs not included).">Surface area</td>
+            <td class="summary-res">{{coilarea}}</td>
+            <td class="summary-unm">{{unmarea}}</td>
+          </tr>
+        </table>
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Wire
+            <small>
+              dimensions
+              <span class="cd-setup-multi blinky" data-blink="#cd-setup-cg">
+                (each coil)</span>
+            </small>
+          </h3>
+        </div>
+        <table class="table table-condensed table-striped cd-result small">
+          <tr id="summary-wirevolume">
+            <td title="Total volume of resistance wire">Volume</td>
+            <td class="summary-res">{{wirevolume}}</td>
+            <td class="summary-unm">{{unmvol}}</td>
+          </tr>
+          <tr id="summary-density">
+            <td title="Density of resistance wire">Density</td>
+            <td class="summary-res">{{density}}</td>
+            <td class="summary-unm">{{{unmdensity}}}</td>
+          </tr>
+          <tr id="summary-wiremass">
+            <td title="Total mass of resistance wire">Mass</td>
+            <td class="summary-res">{{wiremass}}</td>
+            <td class="summary-unm">{{unmmass}}
+              <span class="cd-si">mg</span>
+              <span class="cd-im" title="grain">gr</span>
+            </td>
+          </tr>
+          <tr id="summary-surfacearea">
+            <td title="Surface area of resistance wire (legs included).">Surface
+              area</td>
+            <td class="summary-res">{{surfacearea}}</td>
+            <td class="summary-unm">{{unmarea}}</td>
+          </tr>
+          <tr id="summary-xarea">
+            <td title="Cross section area of resistance wire">Cross section area</td>
+            <td class="summary-res">{{xarea}}</td>
+            <td class="summary-unm">{{unmarea}}</td>
+          </tr>
+
+        </table>
+      </div>
+    </script>
+    <script id="fracinput-template" type="text/x-handlebars-template">
+      <div class="fractionmenu" id="{{id}}-fractionmenu">
+        <span class="btn btn-default btn-xs pull-right" id="{{id}}-fractionbtn">
+          <sup>x</sup>/<sub>y</sub>"
+        </span>
+        <div
+          class="fractionpresets"
+          style="display:none;"
+          id="{{id}}scd-fractionpresets"
+        >
+          <div class="btn-group-justified">
+            <span class="btn btn-default btn-xs" data-cd-im="0.25">1/4"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.125">1/8"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.375">3/8"</span>
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.0625"
+            >1/16"</span>
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.1875"
+            >3/16"</span>
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.3125"
+            >5/16"</span>
+          </div>
+          <div class="btn-group-justified">
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.03125"
+            >1/32""</span>
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.09375"
+            >3/32"</span>
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.15625"
+            >5/32"</span>
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.21875"
+            >7/32"</span>
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.28125"
+            >9/32"</span>
+            <span
+              class="btn btn-default btn-xs"
+              data-cd-im="0.34375"
+            >11/32"</span>
+          </div>
+          <div class="btn-group-justified">
+            <span class="btn btn-default btn-xs" data-cd-im="0.015625"><sup
+              >1</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.046875"><sup
+              >3</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.078125"><sup
+              >5</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.109375"><sup
+              >7</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.140625"><sup
+              >9</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.171875"><sup
+              >11</sup>/<sub>64</sub>"</span>
+          </div>
+          <div class="btn-group-justified">
+            <span class="btn btn-default btn-xs" data-cd-im="0.203125"><sup
+              >13</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.234375"><sup
+              >15</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.265625"><sup
+              >17</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.296875"><sup
+              >19</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.328125"><sup
+              >21</sup>/<sub>64</sub>"</span>
+            <span class="btn btn-default btn-xs" data-cd-im="0.359375"><sup
+              >23</sup>/<sub>64</sub>"</span>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="template-setup">
+      <option data-setup-wires="1" data-rfactor="1" value="{{single}}">Single
+        coil</option>
+      <option data-setup-wires="2" data-rfactor="0.5" value="{{par2}}">Dual coil</option>
+      <option
+        data-setup-wires="3"
+        data-rfactor="0.333333333333333333"
+        value="{{par3}}"
+      >Triple coil</option>
+      <option data-setup-wires="4" data-rfactor="0.25" value="{{par4}}">Quad
+        coil</option>
+      <option data-setup-wires="4" data-rfactor="0.2" value="{{par5}}">Penta
+        coil</option>
+      <option
+        data-setup-wires="4"
+        data-rfactor="0.16666666666666666"
+        value="{{par6}}"
+      >Hex coil</option>
+      <option
+        data-setup-wires="4"
+        data-rfactor="0.142857142857142857"
+        value="{{par7}}"
+      >Hepta coil</option>
+      <option data-setup-wires="4" data-rfactor="0.125" value="{{par8}}">Octa
+        coil</option>
+      <option data-setup-wires="2" data-rfactor="2" value="{{ser2}}">Dual coil
+        (serial)</option>
+      <option data-setup-wires="3" data-rfactor="3" value="{{ser3}}">Triple coil
+        (serial)</option>
+      <option data-setup-wires="4" data-rfactor="4" value="{{ser4}}">Quad coil
+        (serial)</option>
+      <option data-setup-wires="4" data-rfactor="1" value="{{serPar}}">Quad coil
+        (serial-parallel)</option>
+    </script>
+
+    <script type="text/x-handlebars-template" id="template-profile">
+      <option value="{{round}}">Round</option>
+      <option value="{{roundmulti}}">Round, twisted/parallel</option>
+      <option value="{{ribbon}}">Ribbon</option>
+    </script>
+    <script type="text/x-handlebars-template" id="template-mats">
+      {{#each .}}
+      <option value="{{id}}">{{nm}}</option>
+      {{/each}}
+      <option value="c">Custom resistivity</option>
+    </script>
+  </body>
+</html>
